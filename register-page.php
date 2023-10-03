@@ -1,11 +1,34 @@
 <?php
-    include __DIR__ .'/partials/nav.php' ?> 
-    
-      
-      <!-- LOGIN FORM -->
-      
+        include __DIR__ .'/partials/nav.php'; ?> 
+      <h1>Crea il tuo account</h1>
       <div class="form-style">
         <form method="POST" action="./user-page.php">
+          <div class="row">
+            <div class="col-25">
+              <label for="fname">Inserisci il nome</label>
+            </div>
+            <div class="col-75">
+              <input
+                type="text"
+                id="fname"
+                name="firstname"
+                placeholder="Mario"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="lname">Inserisci il cognome</label>
+            </div>
+            <div class="col-75">
+              <input
+                type="text"
+                id="lname"
+                name="lastname"
+                placeholder="Rossi"
+              />
+            </div>
+          </div>
           <div class="row">
             <div class="col-25">
               <label for="email">Inserisci l' email</label>
@@ -31,7 +54,7 @@
                 placeholder="Scrivila qui"
               />
             </div>
-            <!-- OCCHIO PER VEDERE PSW -->
+            <!-- PSW eye-->
             <svg
               width="25"
               height="17"
@@ -49,15 +72,12 @@
 
           <br />
           <div class="row">
-            <input type="submit" value="ACCEDI" class="submit-button" />
+            <input type="submit" value="REGISTRATI" class="submit-button"/>
           </div>
         </form>
         <div class="bottom-form-link">
-          Non hai ancora un profilo?&nbsp
-          <a href="./register-page.php">Registrati</a>
+          Hai già un account?
+          <a href="./index.php">Accedi</a>
         </div>
       </div>
-    <?php
-    include __DIR__ .'/partials/closing-tag.php' ?> 
-
-  
+<?php include __DIR__ .'/../layouts/closing-tag.php' ?>
