@@ -1,3 +1,167 @@
-h1 {
-  color: red;
+/* css reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+
+  /* height: calc(100vh - 7rem); */
+  height: 100vh;
+  /* border: 3px solid red; */
+}
+
+/* ?TOP NAV */
+
+/* Add a black background color to the top navigation */
+.topnav {
+  position: relative;
+  overflow: hidden;
+  border-bottom-left-radius: 0.8125rem;
+  border-bottom-right-radius: 0.8125rem;
+  border: 0px solid #000;
+  background: #fff;
+  box-shadow: 0px 4px 18px -6px #0057ff;
+  height: 7rem;
+  /* !debug */
+  /* border: 2px dashed red; */
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  padding: 1rem;
+  text-decoration: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transform: translateY(-50%);
+  /* !debug */
+  /* border: 2px dashed greenyellow; */
+}
+/* Style the image inside the navigation bar */
+.topnav img {
+  max-width: 8rem;
+  max-height: 3.5rem;
+  color: blue;
+  /* !debug */
+  /* border: 2px dashed violet; */
+}
+
+/* ? MAIN CONTAINER */
+
+.container {
+  /* position: relative; */
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  /* margin: 3rem; */
+  background-image: url(../img/background.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  height: calc(100% - 7rem);
+  /* !debug */
+  /* border: 10px dashed greenyellow; */
+}
+
+.form-style {
+  border-radius: 1.1875rem;
+  width: 41.375rem;
+  /* min-height: 37.75rem; */
+  padding: 1.5rem;
+  border-radius: 1.1875rem;
+  background: #fff;
+  border: 1px solid #134077;
+}
+
+/* ? FORM */
+
+input[type="text"] {
+  width: 100%;
+  padding: 12px 0;
+  border: none;
+  border-bottom: 1px solid #333;
+  /* border-radius: 4px; */
+  /* resize: vertical; */
+  /* border: 2px dashed blue; */
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+  font-weight: 700;
+  /* border: 2px dashed hotpink; */
+  width: 100%;
+}
+
+input[type="submit"] {
+  /* background-color: #04aa6d; */
+  color: white;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 0.6875rem;
+  background: #0057ff;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+input[type="submit"]:hover {
+  background-color: #134077;
+}
+
+.row {
+  position: relative;
+  /* border: 2px solid forestgreen; */
+  display: flex;
+  flex-direction: column;
+}
+.col-25 {
+  width: 100%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  width: 100%;
+  margin-top: 6px;
+}
+
+.svg-eye {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+.submit-button {
+  margin: 2rem 0;
+}
+
+.bottom-form-link {
+  border: 1px solid orange;
+  display: flex;
+  justify-content: center;
+}
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 750px) {
+  .container {
+    /* width: 75%; */
+  }
+  .registration-form {
+    max-width: 20rem;
+  }
+  .col-25,
+  .col-75,
+  input[type="submit"] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .half-circle,
+  .small-circle {
+    display: none;
+  }
 }
