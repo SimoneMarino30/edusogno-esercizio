@@ -7,8 +7,7 @@
 
 body {
   font-family: "DM Sans", sans-serif;
-
-  /* height: calc(100vh - 7rem); */
+  font-family: "Space Grotesk", sans-serif;
   height: 100vh;
   /* border: 3px solid red; */
 }
@@ -142,6 +141,48 @@ input[type="submit"]:hover {
   border: 1px solid orange;
   display: flex;
   justify-content: center;
+}
+/* error validation */
+.error {
+  color: #ff0000;
+}
+
+/* JS PASSWORD VALIDATION */
+/* The message box is shown when the user clicks on the password field */
+#message {
+  display: none;
+  background: #f1f1f1;
+  color: #000;
+  position: relative;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+#message p {
+  padding: 10px 35px;
+  font-size: 18px;
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+  color: green;
+}
+
+.valid:before {
+  position: relative;
+  left: -35px;
+  content: "✔";
+}
+
+/* Add a red text color and an "x" when the requirements are wrong */
+.invalid {
+  color: red;
+}
+
+.invalid:before {
+  position: relative;
+  left: -35px;
+  content: "✖";
 }
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 750px) {
