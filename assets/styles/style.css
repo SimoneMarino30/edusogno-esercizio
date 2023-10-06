@@ -185,15 +185,14 @@ input[type="submit"]:hover {
   content: "✖";
 }
 
-/*? UESR PAGE EVENTS */
-/* section */
-.events {
+/*? USER PAGE EVENTS */
+/* event container */
+.events-container {
   width: 80%;
   display: flex;
   justify-content: start;
   flex-wrap: wrap;
   gap: 1rem;
-  padding-left: 1rem;
   margin-top: 2rem;
   border: 2px solid black;
 }
