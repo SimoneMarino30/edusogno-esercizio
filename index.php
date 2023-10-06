@@ -61,11 +61,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         $stored_pass = $row["password"];
         if ($stored_pass == $validated_password) {
-          var_dump($validated_password);
-          session_start();
-         
-          echo "Valid input!!!";
-          header("Location: user-page.php");
+          $sql_get_name_surname = "SELECT nome, cognome FROM utenti";
+          $stmt = $conn->prepare($sql_get_name_surname);
+          $stmt->execute();
+          $result = $stmt->get_result();
+          if ($result->num_rows >= 1) {
+            $row = $result->fetch_assoc();
+            $_SESSION["user-name"] = $row["nome"];
+            $_SESSION["user-surname"] = $row["cognome"];
+
+            echo "Valid input!!!";
+            header("Location: user-page.php");
+          }
         }
       }
     }
@@ -96,10 +103,7 @@ include __DIR__ . '/partials/nav.php';
         <label for="password">Inserisci la password</label>
       </div>
       <div class="col-75">
-        <input type="password" id="password" name="password" placeholder="Scrivila qui"
-          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-          title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-          required />
+        <input type="password" id="password" name="password" placeholder="Scrivila qui" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required />
         <div id="error-message" class="error-message"><?php echo $emailError; ?></div>
 
 
@@ -125,7 +129,7 @@ include __DIR__ . '/partials/nav.php';
   <p id="number" class="invalid">A <b>number</b></p>
   <p id="length" class="invalid">Minimum <b>8 characters</b></p>
 </div>
-<script src="./assets/js/validation_index.js"></script>
+<!-- <script src="./assets/js/validation_index.js"></script> -->
 <?php
 include __DIR__ . '/partials/closing-tag.php';
 ?>
