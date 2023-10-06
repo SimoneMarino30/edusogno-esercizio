@@ -25,7 +25,7 @@ body {
   box-shadow: 0px 4px 18px -6px #0057ff;
   height: 7rem;
   /* !debug */
-  /* border: 2px dashed red; */
+  border: 2px dashed red;
 }
 
 /* Style the links inside the navigation bar */
@@ -147,7 +147,7 @@ input[type="submit"]:hover {
   color: #ff0000;
 }
 
-/* JS PASSWORD VALIDATION */
+/*? JS PASSWORD VALIDATION */
 /* The message box is shown when the user clicks on the password field */
 #message {
   display: none;
@@ -184,11 +184,41 @@ input[type="submit"]:hover {
   left: -35px;
   content: "✖";
 }
+
+/*? UESR PAGE EVENTS */
+/* section */
+.events {
+  width: 80%;
+  display: flex;
+  justify-content: start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-left: 1rem;
+  margin-top: 2rem;
+  border: 2px solid black;
+}
+/* event card */
+.event-card {
+  width: 22rem;
+  height: 13.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: #fff;
+  border: 2px solid orange;
+}
+
+.event-date {
+  margin: 2rem 0;
+}
+
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 750px) {
-  .container {
-    /* width: 75%; */
-  }
+  /* .container {
+    width: 75%;
+  } */
   .registration-form {
     max-width: 20rem;
   }
