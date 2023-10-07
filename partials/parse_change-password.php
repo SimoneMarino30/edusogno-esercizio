@@ -7,18 +7,6 @@ error_reporting(E_ALL);
 include __DIR__ . ('/../functions/functions.php');
 include __DIR__ . ('/../connection.php');
 
-// var_dump($_POST['changePasswordBtn']);
-// var_dump('-----------------');
-// var_dump($_SESSION['user-id']);
-// var_dump('-----------------');
-// var_dump($_POST['token']);
-// var_dump('-----------------');
-// var_dump($_POST['current_password']);
-// var_dump('-----------------');
-// var_dump($_POST['new_password']);
-// var_dump('-----------------');
-// var_dump($_POST['confirm_password']);
-
 if (isset($_POST['changePasswordBtn'], $_POST['token'])) {
   if (validate_token($_POST['token'])) {
     //process the form
@@ -62,9 +50,7 @@ if (isset($_POST['changePasswordBtn'], $_POST['token'])) {
           if ($result->num_rows >= 1) {
             $row = $result->fetch_assoc();
             $password_from_db = $row['password'];
-            // var_dump('----************---------***********----------**********-');
-            // var_dump($password_from_db);
-            // var_dump('----************---------***********----------**********-');
+
             if ($current_password == $password_from_db) {
               //hashed new password
               $hashed_password = password_hash($password1, PASSWORD_DEFAULT);
@@ -103,12 +89,7 @@ if (isset($_POST['changePasswordBtn'], $_POST['token'])) {
                               confirmButtonText: \"Ok!\" });
                              </script>";
             }
-            // } else {
-            //   signout();
           }
-          // } catch (PDOException $ex) {
-          //   $result = flashMessage("An error occurred: " . $ex->getMessage());
-          // }
         }
       } else {
         if (count($form_errors) == 1) {

@@ -1,11 +1,6 @@
 <?php
 session_start();
 
-include "./connection.php";
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 $emailError = "";
 $passwordError = "";
 $success = "";
@@ -19,6 +14,7 @@ function validate_input($input)
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
   $password = $_POST['password'];
   $email = $_POST['email'];
   if (empty($_POST["email"])) {
@@ -33,7 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows == 1) {
       $row = $result->fetch_assoc();
-      // $storedPassword = $row["password"];
       $stored_email = $row["email"];
       if ($stored_email == $validated_email) {
         echo "Valid input!!!";
@@ -49,40 +44,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $validated_password = validate_input($_POST["password"]);
 
     if ($password == $validated_password) {
-      $validated_password = validate_input($_POST["password"]);
 
-      $sql = "SELECT * FROM utenti WHERE password = ?";
+      $sql = "SELECT * FROM utenti WHERE email = ?";
       $stmt = $conn->prepare($sql);
-      $stmt->bind_param("s", $validated_password);
+      $stmt->bind_param("s", $validated_email);
       $stmt->execute();
       $result = $stmt->get_result();
 
       if ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
+        // Eseguo l'hash della password
+        $hashed_psw = password_hash($validated_password, PASSWORD_BCRYPT);
         $stored_pass = $row["password"];
-        if ($stored_pass == $validated_password) {
-          $sql_get_name_surname = "SELECT nome, cognome FROM utenti";
-          $stmt = $conn->prepare($sql_get_name_surname);
-          $stmt->execute();
-          $result = $stmt->get_result();
-          if ($result->num_rows >= 1) {
-            $row = $result->fetch_assoc();
-            $_SESSION["user-name"] = $row["nome"];
-            $_SESSION["user-surname"] = $row["cognome"];
+        var_dump("line 67 " . $stored_pass);
+        var_dump("line 68 " . $hashed_psw);
 
-            echo "Valid input!!!";
-            header("Location: user-page.php");
-          }
+        $sql_get_name_surname = "SELECT id, nome, cognome FROM utenti WHERE email = ?";
+        $stmt = $conn->prepare($sql_get_name_surname);
+        $stmt->bind_param('s', $validated_email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows >= 1) {
+          $row = $result->fetch_assoc();
+          $_SESSION["user-id"] = $row["id"];
+          $_SESSION["user-name"] = $row["nome"];
+          $_SESSION["user-surname"] = $row["cognome"];
+
+          var_dump($_SESSION["user-id"]);
+          var_dump($_SESSION["user-name"]);
+          var_dump($_SESSION["user-surname"]);
+
+          echo "Valid input!!!";
+          header("Location: user-page.php");
         }
       }
     }
   }
-  if (empty($success)) echo "Invalid input!!!";
 }
 include __DIR__ . '/partials/nav.php';
 ?>
 <!-- LOGIN FORM -->
-
+<h1>Hai già un account?</h1>
 <div class="form-style">
   <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
     <!-- email -->
@@ -132,6 +134,7 @@ include __DIR__ . '/partials/nav.php';
 <!-- <script src="./assets/js/validation_index.js"></script> -->
 <?php
 include __DIR__ . '/partials/closing-tag.php';
+
 ?>
 
 <!-- PSW EYE -->
